@@ -7,7 +7,7 @@ export default function Create({ owner }) {
 
     const { data, setData, post, errors, reset } = useForm({
         image: "",
-        time_out: "",
+        time_out: owner.time_out || "",
         name: owner.name || "",
         time_in: owner.time_in || "",
         _method: 'PUT'
@@ -72,7 +72,7 @@ export default function Create({ owner }) {
                                     name="name"
                                     value={data.name}
                                     isFocused={true}
-                                    className="mt-1 block w-full"
+                                    className="mt-1 block w-full uppercase"
                                     onChange={(e) => setData("name", e.target.value)}
                                 />
                                 <InputError message={errors.name} className="mt-2" />
@@ -87,6 +87,7 @@ export default function Create({ owner }) {
                                     type="time"
                                     name="time_in"
                                     value={data.time_in}
+                                    readOnly
                                     className="mt-1 block w-full"
                                     onChange={(e) => setData("time_in", e.target.value)}
                                 />
@@ -99,6 +100,7 @@ export default function Create({ owner }) {
                                     id="owner_time_out"
                                     type="time"
                                     name="time_out"
+                                    value={data.time_out}
                                     className="mt-1 block w-full"
                                     onChange={(e) => setData("time_out", e.target.value)}
                                 />

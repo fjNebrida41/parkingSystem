@@ -25,7 +25,7 @@ class UpdateOwnerRequest extends FormRequest
             'image' =>['nullable' ,'image'],
             'name' => ['required', 'max:255'],
             'time_in' =>['required'],
-            'time_out' =>['nullable', 'required'],
+            'time_out' =>['nullable'],
         ];
     }
 }

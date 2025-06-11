@@ -73,9 +73,10 @@ export default function Create({ vehicle, owners, users }) {
                                 <SelectInput
                                     id="owner_id"
                                     name="vehicle_owner_id"
-                                    className="mt-1 block w-full"
+                                    className="mt-1 block w-full uppercase"
                                     defaultValue={data.owner_id}
                                     onChange={(e) => setData('owner_id', e.target.value)}
+                                    disabled
                                 >
                                     <option value="">Select Owner</option>
                                     {owners.data.map((owner) => (
@@ -165,6 +166,7 @@ export default function Create({ vehicle, owners, users }) {
                                     className="mt-1 block w-full"
                                     defaultValue={data.assigned_user_id}
                                     onChange={(e) => setData('assigned_user_id', e.target.value)}
+                                    disabled
                                 >
                                     <option value="">Select User</option>
                                     {users.data.map((user) => (

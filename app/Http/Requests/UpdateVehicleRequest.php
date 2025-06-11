@@ -23,7 +23,7 @@ class UpdateVehicleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => ['image'],
+            'image' => ['nullable','image'],
             'owner_id' => ['required', 'exists:owners,id'],
             'assigned_user_id' => ['required', 'exists:users,id'],
             'type' => ['required', 
