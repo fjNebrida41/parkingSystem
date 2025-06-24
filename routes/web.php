@@ -17,6 +17,7 @@ Route::middleware(['auth', 'verified'])->group(function (){
 
     Route::get('/owner/assignedToUser', [OwnerController::class, 'assignedToMe'])
     ->name('owner.assignedToMe');
+    Route::get('/owners', [OwnerController::class, 'index'])->name('owner.index');
     Route::resource('owner', OwnerController::class);
 
     Route::resource('vehicle', VehicleController::class);

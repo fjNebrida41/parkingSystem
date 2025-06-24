@@ -77,7 +77,7 @@ export default function Show({ owner, vehicles }) {
                                         </div>
                                         <div className="mt-4 text-nowrap">
                                             <label className="font-bold text-lg ">Time Out</label>
-                                            <p className="mt-1 text-sm">{owner.time_out}</p>
+                                            <p className="mt-1 text-sm">{owner.time_out || '---'}</p>
                                         </div>
                                     </div>
 

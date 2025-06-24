@@ -13,7 +13,15 @@ export default function Dashboard({
     total,
     assignedTotal,
     latestOwners,
+    assignedTimeOut,
 }) {
+
+    const deleteOwner = (owner) => {
+        if (!window.confirm('Are you sure you want to delete this owner?')) {
+            return;
+        }
+        router.delete(route('owner.destroy', owner.id));
+    };
 
     return (
         <AuthenticatedLayout
@@ -27,13 +35,13 @@ export default function Dashboard({
             <div className="py-12">
 
                 {/* Cards row */}
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 flex gap-2 grid grid-cols-5">
+                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 flex gap-2 grid grid-cols-6">
 
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                         <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
                             <Link
                                 href={route('vehicle.index', { vehicleType: 'bicycle' })}
-                                className="text-blue-600 text-xl font-semibold hover:underline"
+                                className="text-blue-600 text-sm font-semibold hover:underline"
                             >
                                 Bicycle
                             </Link>
@@ -46,7 +54,7 @@ export default function Dashboard({
                         <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
                             <Link
                                 href={route('vehicle.index', { vehicleType: 'motorcycle' })}
-                                className="text-red-600 text-xl font-semibold hover:underline"
+                                className="text-red-600 text-sm font-semibold hover:underline"
                             >
                                 Motorcycle
                             </Link>
@@ -58,7 +66,7 @@ export default function Dashboard({
                         <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
                             <Link
                                 href={route('vehicle.index', { vehicleType: 'e_bike_2s' })}
-                                className="text-green-600 text-xl font-semibold hover:underline"
+                                className="text-green-600 text-sm font-semibold hover:underline"
                             >
                                 E Bike 2s
                             </Link>
@@ -70,7 +78,7 @@ export default function Dashboard({
                         <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
                             <Link
                                 href={route('vehicle.index', { vehicleType: 'e_bike_4s' })}
-                                className="text-yellow-600 text-xl font-semibold hover:underline"
+                                className="text-yellow-600 text-sm font-semibold hover:underline"
                             >
                                 E Bike 4s
                             </Link>
@@ -80,7 +88,25 @@ export default function Dashboard({
 
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                         <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
-                            <h3 className="text-gray-600 text-xl font-semibold">Total</h3>
+                            <Link
+                                href={route('owner.index', { status: 'not_checked_out' })}
+                                className="text-gray-600 text-sm font-semibold hover:underline hover:text-white"
+                            >
+                                Not Checked Out
+                            </Link>
+                            <p>{assignedTimeOut}</p>
+                        </div>
+                    </div>
+
+
+                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
+                        <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
+                            <Link
+                                href={route('owner.assignedToMe')}
+                                className="text-gray-600 text-sm font-semibold hover:underline hover:text-white"
+                            >
+                                My List
+                            </Link>
                             <p>{assignedTotal} / {total}</p>
                         </div>
                     </div>
@@ -98,6 +124,7 @@ export default function Dashboard({
                                         <th className="px-4 py-3">Name</th>
                                         <th className="px-4 py-3">Time In</th>
                                         <th className="px-4 py-3">Time Out</th>
+                                        <th className="px-4 py-3">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -124,6 +151,22 @@ export default function Dashboard({
                                             <td className="px-4 py-2 text-gray-200">{owner.time_in}</td>
                                             <td className="px-4 y-2 text-gray-200">
                                                 {owner.time_out || "---"}
+                                            </td>
+                                            <td className="px-3 py-2 text-nowrap">
+                                                <Link
+                                                    href={route("owner.edit", owner.id)}
+                                                    className="font-medium text-blue-600
+                                                        dark:text-blue-500 hover:underline mx-1"
+                                                >
+                                                    Edit
+                                                </Link>
+                                                <button
+                                                    onClick={(e) => deleteOwner(owner)}
+                                                    className="font-medium text-red-600
+                                                        dark:text-red-500 hover:underline mx-1"
+                                                >
+                                                    Delete
+                                                </button>
                                             </td>
                                         </tr>
                                     ))}

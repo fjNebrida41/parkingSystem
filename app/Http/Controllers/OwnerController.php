@@ -14,13 +14,14 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class OwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $query = Owner::query();
 
@@ -32,6 +33,10 @@ class OwnerController extends Controller
         }
         if (request('name')) {
             $query->where("name", "like", "%" . request("name") . "%");
+        }
+
+        if ($request->status ==='not_checked_out') {
+            $query->whereNull('time_out');
         }
 
         $owners = $query
@@ -121,7 +126,8 @@ class OwnerController extends Controller
     {
         $data = $request->validated();
         $image =$data['image'] ?? null;
-        $data['created_by'] = Auth::id();
+        unset($data['created_by']);
+        $data['updated_by'] = Auth::id();
         if($image) {
             if ($owner->image_path) {
                 Storage::disk('public')->deleteDirectory(dirname($owner->image_path));
