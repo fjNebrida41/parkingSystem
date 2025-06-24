@@ -89,25 +89,24 @@ export default function Dashboard({
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                         <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
                             <Link
-                                href={route('owner.index', { status: 'not_checked_out' })}
-                                className="text-gray-600 text-sm font-semibold hover:underline hover:text-white"
-                            >
-                                Not Checked Out
-                            </Link>
-                            <p>{assignedTimeOut}</p>
-                        </div>
-                    </div>
-
-
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
-                        <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
-                            <Link
                                 href={route('owner.assignedToMe')}
                                 className="text-gray-600 text-sm font-semibold hover:underline hover:text-white"
                             >
                                 My List
                             </Link>
                             <p>{assignedTotal} / {total}</p>
+                        </div>
+                    </div>
+
+                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
+                        <div className="p-6 text-gray-900 dark:text-gray-100 text-center">
+                            <Link
+                                href={route('owner.index', { status: 'not_checked_out' })}
+                                className="text-gray-600 text-sm font-semibold hover:underline hover:text-white"
+                            >
+                                Not Checked Out
+                            </Link>
+                            <p>{assignedTimeOut}</p>
                         </div>
                     </div>
                 </div>
