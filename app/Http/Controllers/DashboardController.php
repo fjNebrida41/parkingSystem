@@ -54,6 +54,10 @@ class DashboardController extends Controller
         $assignedTimeOut = Owner::query()
             ->where('time_out')
             ->count();
+        $totalTimeOut = Owner::query()
+            ->where('time_out')
+            ->where('created_by', $user->id)
+            ->count();
 
         $total = Vehicle::query()
             ->count();
@@ -81,6 +85,7 @@ class DashboardController extends Controller
             'assignedTotal',
             'latestOwners',
             'assignedTimeOut',
+            'totalTimeOut',
         ));
     }
 }

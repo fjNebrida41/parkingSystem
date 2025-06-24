@@ -164,7 +164,7 @@ export default function VehiclesTable({ vehicles, queryParams = null }) {
                                     </Link>
                                 </th>
                                 <td className="px-3 py-2 text-gray-200">{vehicle.type}</td>
-                                <td className={`text-xs uppercase ${!vehicle.plate_number ? 'text-gray-400 italic text-xs' : 'text-center text-gray-200'}`}>
+                                <td className={`text-xs uppercase ${!vehicle.plate_number ? 'text-gray-400 italic text-xs' : 'text-gray-200'}`}>
                                     {vehicle.plate_number || "No plate number provided"}
                                 </td>
                                 <td className="px-3 py-2">

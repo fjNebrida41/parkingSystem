@@ -14,6 +14,7 @@ export default function Dashboard({
     assignedTotal,
     latestOwners,
     assignedTimeOut,
+    totalTimeOut,
 }) {
 
     const deleteOwner = (owner) => {
@@ -106,7 +107,7 @@ export default function Dashboard({
                             >
                                 Not Checked Out
                             </Link>
-                            <p>{assignedTimeOut}</p>
+                            <p>{totalTimeOut} / {assignedTimeOut}</p>
                         </div>
                     </div>
                 </div>
