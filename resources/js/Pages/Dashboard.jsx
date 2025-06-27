@@ -107,7 +107,7 @@ export default function Dashboard({
                             >
                                 Not Checked Out
                             </Link>
-                            <p>{totalTimeOut} / {assignedTimeOut}</p>
+                            <p>{assignedTimeOut} / {totalTimeOut}</p>
                         </div>
                     </div>
                 </div>

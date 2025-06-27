@@ -51,10 +51,10 @@ class DashboardController extends Controller
             ->where('created_by', $user->id)
             ->count();  
 
-        $assignedTimeOut = Owner::query()
+        $totalTimeOut = Owner::query()
             ->where('time_out')
             ->count();
-        $totalTimeOut = Owner::query()
+        $assignedTimeOut = Owner::query()
             ->where('time_out')
             ->where('created_by', $user->id)
             ->count();
